@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500,700');
+
+html {
+  height: 100%;
+}
+
+body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background-color: #FEFEFE;
+}
+
+#draggable-container {
+     width: 400px; 
+     height: 200px;
+     background: #4d4d4d;
+     display: block;
+}
+
+#playback-container {
+    width: 75%;
+    height: 100%;
+    float: right;
+    background-image: linear-gradient(#0c0c0cda, #20202000), url("../img/party_background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#login-container {
+    width: 25%;
+    height: 100%;
+    float: left;
+    background: #FAFAFA
+}
+
+h1 {
+    font-size: 52px;
+    margin-top: 82px;
+    text-align: center;
+    color: white;
+    font-family: 'Montserrat', medium
+}
+
+h2 {
+    font-size: 22px;
+    margin-top: 32px;
+    margin-left: 172px;
+    margin-right: 172px;
+    text-align: center;
+    color: white;
+    font-family: 'Montserrat', medium
+}
