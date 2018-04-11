@@ -36,27 +36,34 @@ body {
     background: #FAFAFA
 }
 
+#login-avatar {
+	width: 7vw;
+	height: 7vw;
+	margin: auto;
+	display: block;
+	background-image: url("../img/login-avatar.svg")
+}
+
 h1 {
-    font-size: 62px;
-    margin-top: 102px;
+    font-size: 5vw;
+    margin-top: 1em;
     text-align: center;
     color: white;
     font-family: 'Montserrat', medium
 }
 
 h2 {
-    font-size: 22px;
-    margin-top: 32px;
-    margin-left: 172px;
-    margin-right: 172px;
+    font-size: 2vw;
+    margin-left: 15vw;
+    margin-right: 15vw;
     text-align: center;
     color: white;
     font-family: 'Montserrat', medium
 }
 
 h3 {
-	font-size: 24px;
-    margin-top: 52px;
+	font-size: 2.5vw;
+    margin-top: 2em;
     text-align: center;
     color: black;
     font-family: 'Montserrat', bold
