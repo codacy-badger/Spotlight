@@ -32,6 +32,7 @@ body {
     width: 25%;
     height: 100%;
     float: left;
+	box-shadow: 2px 0px 15px black;
     background: #FAFAFA
 }
 
