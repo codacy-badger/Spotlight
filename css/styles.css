@@ -31,7 +31,7 @@ body {
     width: auto    !important;
     height: 100%   !important;
     z-index: 1;
-    object-fit: contain;
+    object-fit: fill;
 }
 
 .video-gradient {
