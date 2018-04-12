@@ -23,9 +23,10 @@ body {
     width: 70%;
     height: 100%;
     float: right;
-    background-image: linear-gradient(#0c0c0cda, #20202000), url("../img/party_background.jpg");
+    background-image: url("../img/party_background.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
+    -ms-behavior: url('http://example.com/js/backgroundsize.htc');
 }
 
 #login-container {
@@ -37,11 +38,11 @@ body {
 }
 
 #login-avatar {
-	width: 7vw;
-	height: 7vw;
+	width: 6vw;
+	height: 6vw;
 	margin: auto;
+	margin-top: 4vw;
 	display: block;
-	background-image: url("../img/login-avatar.svg")
 }
 
 #login-button {
@@ -49,6 +50,7 @@ body {
 	height: 3vw;
 	display: block;
 	margin: auto;
+	cursor: pointer;
 	margin-top: 3em;
     border-radius: 3vw;
 	border: 0px;
@@ -90,7 +92,7 @@ h3 {
 	font-size: 1.8vw;
     margin-top: 2em;
     text-align: center;
-    color: black;
+    color: #252525;
     font-family: 'Montserrat', bold
 }
 
@@ -100,16 +102,32 @@ h4 {
 	margin-left: 8em;
 	margin-right: 6em;
     text-align: left;
-    color: #888888;
+    color: #252525;
     font-family: 'Montserrat', medium
 }
 
 h5 {
 	font-size: 0.9vw;
-    margin-top: 12em;
+    margin-top: 10em;
 	margin-left: 7em;
 	margin-right: 6em;
     text-align: left;
-    color: black;
+    color: #252525;
     font-family: 'Montserrat', medium
+}
+
+#support-paypal {
+    width: 1.4vw;
+    height: 1.4vw;
+    margin-left: 6vw;
+}
+
+#support-github {
+    width: 1.4vw;
+    height: 1.4vw;
+    margin-left: 0.4vw;
+}
+
+a {
+    text-decoration: none;
 }
