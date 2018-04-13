@@ -7,30 +7,35 @@
 </head>
 <body>
 
-<div id="playback-container">
-    <div class="video-gradient"></div>
-    <video autoplay muted loop id="video">
-        <source src="assets/index-background-video.mov">
-    </video>
-    <h1>EXAMPLE TEXT <br>- PRODUCT NAME -</h1>
-    <h2>Short description of the projects functions and abilitites, maybe with a catchy line</h2>
+<div id="app">
+    <div id="playback-container">
+        <div class="video-gradient"></div>
+        <video autoplay muted loop id="video">
+            <source src="assets/index-background-video.mov">
+        </video>
+        <h1>EXAMPLE TEXT <br>- PRODUCT NAME -</h1>
+        <h2>Short description of the projects functions and abilitites, maybe with a catchy line</h2>
+    </div>
+
+    <div id="login-container">
+        <h3>Get Started</h3>
+        <img id="login-avatar" src="img/avatar-icon.svg"/>
+        <button id="login-button" v-on:click="authorize">Login</button>
+        <h4>You will be redirected to the Spotify Website where you authenticate this application.<br>
+            We will never post/edit anything without your explicit permission and access can always be revoked manually.
+        </h4>
+
+        <h5>Support this project:</h5>
+        <a target="_blank" href="https://www.paypal.me/Florianisme/5">
+            <img id="support-paypal" src="img/paypal-icon.svg"/>
+        </a>
+        <a target="_blank" href="https://github.com/Florianisme/SpotifyHightlight">
+            <img id="support-github" src="img/github-icon.svg"/>
+        </a>
+    </div>
 </div>
 
-<div id="login-container">
-    <h3>Get Started</h3>
-    <img id="login-avatar" src="img/avatar-icon.svg"/>
-    <button id="login-button" href="#">Login</button>
-    <h4>You will be redirected to the Spotify Website where you authenticate this application.<br>
-        We will never post/edit anything without your explicit permission and access can always be revoked manually.
-    </h4>
-
-    <h5>Support this project:</h5>
-    <a target="_blank" href="https://www.paypal.me/Florianisme/5">
-        <img id="support-paypal" src="img/paypal-icon.svg"/>
-    </a>
-    <a target="_blank" href="https://github.com/Florianisme/SpotifyHightlight">
-        <img id="support-github" src="img/github-icon.svg"/>
-    </a>
-</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
