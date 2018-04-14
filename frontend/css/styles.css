@@ -27,7 +27,7 @@ body {
     width: 70%;
     height: 100%;
     float: right;
-    background: url("../img/party-background.jpeg") no-repeat;
+    background: url("../img/party-background.jpeg") no-repeat, black;
     background-size: cover;
     -ms-behavior: url('http://example.com/js/backgroundsize.htc');
 }
