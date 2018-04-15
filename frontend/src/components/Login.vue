@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="height: 100%;">
     <div id="playback-container">
       <h1>EXAMPLE TEXT <br>- PRODUCT NAME -</h1>
       <h2>Short description of the projects functions and abilitites, maybe with a catchy line</h2>
@@ -84,15 +84,8 @@
     background-color: #FEFEFE;
   }
 
-  #app {
+  #container {
     height: 100%;
-  }
-
-  #draggable-container {
-    width: 400px;
-    height: 200px;
-    background: #4d4d4d;
-    display: block;
   }
 
   #playback-container {
