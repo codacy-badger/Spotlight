@@ -1,13 +1,18 @@
 <template>
-  <div>
+  <div class="main">
     <div id="header">
       <h1>Guten Abend,</h1>
-      <h2 id="user">{{ username }}</h2>
+      <h2 id="user">{{ user.username }}</h2>
     </div>
 
     <div id="actions">
       <div id="choose-playlist">
-        <h3>Wähle die gewünschte Playlist aus:</h3>
+        <h3 id="playlist">Wähle die gewünschte Playlist aus:</h3>
+        <ul>
+          <li v-for="playlist in playlists">
+            {{ playlist }}
+          </li>
+        </ul>
       </div>
 
       <div id="adjust-curve">
@@ -22,14 +27,20 @@
 </template>
 
 <script>
-  let user = {
+  var user = {
     username: "Florianisme"
   };
+
+  var playlists = ["Auto", "Rap", "Fitness Mix", "Fußball", "Party", "Radio", "Entspannung"];
+
   export default {
-    name: '#user',
+    name: 'main',
     data() {
-      return user;
+      return {
+        user: user,
+        playlists: playlists
     }
+  }
   }
 </script>
 
@@ -57,6 +68,47 @@
     color: black;
     font-family: 'Montserrat', medium, serif;
     font-weight: normal;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    height: 50vh;
+    width: 25vw;
+    margin-top: 8vh;
+    overflow: hidden;
+    overflow-y: scroll;
+  }
+
+  li {
+    font-size: 1.4vw;
+    color: black;
+    padding-bottom: 3.5vh;
+    padding-top: 3.5vh;
+    margin-left: 2vw;
+    font-family: 'Montserrat', medium, serif;
+    font-weight: normal;
+    border-bottom: 2px solid;;
+  }
+
+  divider {
+
+  }
+
+  ::-webkit-scrollbar {
+    width: 0.6vw;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: #FFFFFF;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  ::-webkit-scrollbar-button {
+    background-color: #FFFFFF;
   }
 
   #actions {
