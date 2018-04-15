@@ -84,10 +84,6 @@
     background-color: #FEFEFE;
   }
 
-  #container {
-    height: 100%;
-  }
-
   #playback-container {
     width: 70%;
     height: 100%;
