@@ -26,44 +26,20 @@
 
 <script>
   const scopes = '';
-  const CALLBACK = "http://localhost:8080";
+  const REDIRECT_URI = "http://localhost:8080";
   const SPOTIFY_CLIENT_ID = "f11cabb0069043d18dc1e8f6d8d8b8c5";
 
   export default {
     name: 'Login',
     methods: {
       authorize: function () {
-        //document.location = `https://accounts.spotify.com/authorize?client_id=${SPOTIFY_CLIENT_ID}&response_type=token&scope=${encodeURIComponent(scopes)}&redirect_uri=${encodeURIComponent(CALLBACK)}`;
-        function getLoginURL(scopes) {
-          return 'https://accounts.spotify.com/authorize?client_id=' + SPOTIFY_CLIENT_ID +
-            '&redirect_uri=' + encodeURIComponent(CALLBACK) +
-            '&scope=' + encodeURIComponent(scopes.join(' ')) +
-            '&response_type=token';
-        }
-
-        var url = getLoginURL([
-          'playlist-read-private', 'playlist-modify-private', 'playlist-modify-public'
-        ]);
-        var width = 450,
-          height = 730,
-          left = (screen.width / 2) - (width / 2),
-          top = (screen.height / 2) - (height / 2);
-
-        var w = window.open(url,
-          'Spotify',
-          'menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left
-        );
+        document.location = `https://accounts.spotify.com/authorize?client_id=${SPOTIFY_CLIENT_ID}&response_type=token&scope=${encodeURIComponent(scopes)}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`;
       }
     },
-    mounted: function () {
-      if (!location.hash) return;
-
-      var parametersReturnedFromSpotify = JSON.parse('{"' + location.hash.replace(/#/g, '').replace(/&/g, '","').replace(/=/g, '":"') + '"}', function (key, value) {
+    beforeCreate: function () {
+      this.spotify =  JSON.parse('{"' + this.$route.hash.replace(/#/g, '').replace(/&/g, '","').replace(/=/g, '":"') + '"}', function (key, value) {
         return key === "" ? value : decodeURIComponent(value)
       });
-      this.accessToken = parametersReturnedFromSpotify["access_token"];
-
-
     }
   }
 </script>
