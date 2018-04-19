@@ -2,7 +2,7 @@
   <div class="main">
     <div id="header">
       <h1>Guten Abend,</h1>
-      <h2 id="user">{{ user.username }}</h2>
+      <h2 id="user">{{ user.id }}</h2>
     </div>
 
     <div id="actions">
@@ -29,15 +29,13 @@
 <script>
   import axios from 'axios'
 
-  var user = {
-    username: "Florianisme"
-  };
-
   export default {
     name: 'main',
     data() {
       return {
-        user: user,
+        user: {
+          id: ""
+        },
         playlists: []
       }
     },
@@ -52,6 +50,11 @@
       instance.get("/playlists")
         .then(function (response) {
           this.$data.playlists = response.data.items;
+        }.bind(this));
+
+      instance.get("")
+        .then(function (response) {
+          this.$data.user = response.data
         }.bind(this));
     }
   }
