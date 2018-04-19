@@ -10,7 +10,7 @@
         <h3 id="playlist">Wähle die gewünschte Playlist aus:</h3>
         <ul>
           <li v-for="playlist in playlists">
-            {{ playlist }}
+            {{ playlist.name }}
           </li>
         </ul>
       </div>
@@ -27,20 +27,32 @@
 </template>
 
 <script>
+  import axios from 'axios'
+
   var user = {
     username: "Florianisme"
   };
-
-  var playlists = ["Auto", "Rap", "Fitness Mix", "Fußball", "Party", "Radio", "Entspannung"];
 
   export default {
     name: 'main',
     data() {
       return {
         user: user,
-        playlists: playlists,
-        accessToken: this.$route.params.accessToken
+        playlists: []
       }
+    },
+    created: function () {
+      const instance = axios.create({
+        baseURL: 'https://api.spotify.com/v1/me',
+        timeout: 1000,
+        headers: {
+          'Authorization': `Bearer ${this.$route.params.accessToken}`
+        }
+      });
+      instance.get("/playlists")
+        .then(function (response) {
+          this.$data.playlists = response.data.items;
+        }.bind(this));
     }
   }
 </script>
