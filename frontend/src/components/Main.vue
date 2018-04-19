@@ -9,7 +9,7 @@
       <div id="choose-playlist">
         <h3 id="playlist">Wähle die gewünschte Playlist aus:</h3>
         <ul>
-          <li v-for="playlist in playlists" v-on:click="onPlaylistSelected(playlist, playlist.id)">
+          <li v-for="playlist in playlists" v-bind:id="playlist.id" v-on:click="onPlaylistSelected(playlist, playlist.id)">
             {{ playlist.name }}
           </li>
         </ul>
@@ -44,7 +44,7 @@
       onPlaylistSelected(selectedPlaylistName, elementId) {
         this.selectedPlaylistName = selectedPlaylistName;
         console.log(selectedPlaylistName);
-        //document.getElementById(elementId).onselect;
+        document.getElementById(elementId).style.backgroundColor = "green";
       }
     },
     created: function () {
@@ -81,7 +81,7 @@
   h1 {
     font-size: 2.5vw;
     margin-bottom: 0.5em;
-    margin-top: 3vw;
+    margin-top: 1.5vw;
     color: black;
     font-family: 'Montserrat', medium, serif;
     font-weight: normal;
@@ -89,7 +89,7 @@
 
   h2 {
     font-size: 2.2vw;
-    margin-top: 0vw;
+    margin-top: 0;
     color: black;
     font-family: 'Montserrat', medium, serif;
     font-weight: normal;
@@ -107,6 +107,7 @@
 
   li {
     font-size: 1.4vw;
+    cursor: pointer;
     color: black;
     padding-bottom: 2vw;
     padding-top: 1.6vw;
@@ -115,6 +116,10 @@
     font-family: 'Montserrat', medium, serif;
     font-weight: normal;
     border-bottom: 2px solid;;
+  }
+
+  li:checked {
+    background-color: blue;
   }
 
   ::-webkit-scrollbar {
