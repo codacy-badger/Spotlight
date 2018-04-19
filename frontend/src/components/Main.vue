@@ -9,7 +9,7 @@
       <div id="choose-playlist">
         <h3 id="playlist">Wähle die gewünschte Playlist aus:</h3>
         <ul>
-          <li v-for="playlist in playlists">
+          <li v-for="playlist in playlists" v-on:click="onPlaylistSelected(playlist, playlist.id)">
             {{ playlist.name }}
           </li>
         </ul>
@@ -36,7 +36,15 @@
         user: {
           id: ""
         },
-        playlists: []
+        playlists: [],
+        selectedPlaylistName: null
+      }
+    },
+    methods: {
+      onPlaylistSelected(selectedPlaylistName, elementId) {
+        this.selectedPlaylistName = selectedPlaylistName;
+        console.log(selectedPlaylistName);
+        //document.getElementById(elementId).onselect;
       }
     },
     created: function () {
@@ -73,6 +81,7 @@
   h1 {
     font-size: 2.5vw;
     margin-bottom: 0.5em;
+    margin-top: 3vw;
     color: black;
     font-family: 'Montserrat', medium, serif;
     font-weight: normal;
@@ -80,7 +89,7 @@
 
   h2 {
     font-size: 2.2vw;
-    margin-top: 0;
+    margin-top: 0vw;
     color: black;
     font-family: 'Montserrat', medium, serif;
     font-weight: normal;
@@ -99,16 +108,13 @@
   li {
     font-size: 1.4vw;
     color: black;
-    padding-bottom: 3.5vh;
-    padding-top: 3.5vh;
-    margin-left: 2vw;
+    padding-bottom: 2vw;
+    padding-top: 1.6vw;
+    margin-left: 1.6vw;
+    margin-right: 2vw;
     font-family: 'Montserrat', medium, serif;
     font-weight: normal;
     border-bottom: 2px solid;;
-  }
-
-  divider {
-
   }
 
   ::-webkit-scrollbar {
@@ -117,14 +123,12 @@
 
   ::-webkit-scrollbar-track {
     background-color: #FFFFFF;
+    border-radius: 10px;
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.2);
-  }
-
-  ::-webkit-scrollbar-button {
-    background-color: #FFFFFF;
+    background-color: #343434;
+    border-radius: 10px;
   }
 
   #actions {
