@@ -40,8 +40,8 @@
         user: user,
         playlists: playlists,
         accessToken: this.$route.params.accessToken
+      }
     }
-  }
   }
 </script>
 
