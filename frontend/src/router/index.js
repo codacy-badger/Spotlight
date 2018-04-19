@@ -14,7 +14,7 @@ export default new Router({
       component: Login
     },
     {
-      path: '/main',
+      path: '/main/:accessToken',
       name: 'Main',
       component: Main
     }

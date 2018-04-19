@@ -38,7 +38,8 @@
     data() {
       return {
         user: user,
-        playlists: playlists
+        playlists: playlists,
+        accessToken: this.$route.params.accessToken
     }
   }
   }

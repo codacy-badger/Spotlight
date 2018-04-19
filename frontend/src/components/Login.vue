@@ -25,6 +25,8 @@
 </template>
 
 <script>
+  import router from "@/router"
+
   const scopes = '';
   const REDIRECT_URI = "http://localhost:8080";
   const SPOTIFY_CLIENT_ID = "f11cabb0069043d18dc1e8f6d8d8b8c5";
@@ -37,9 +39,12 @@
       }
     },
     beforeCreate: function () {
-      this.spotify =  JSON.parse('{"' + this.$route.hash.replace(/#/g, '').replace(/&/g, '","').replace(/=/g, '":"') + '"}', function (key, value) {
+      if (!this.$route.hash) return;
+
+      var spotify = JSON.parse('{"' + this.$route.hash.replace(/#/g, '').replace(/&/g, '","').replace(/=/g, '":"') + '"}', function (key, value) {
         return key === "" ? value : decodeURIComponent(value)
       });
+      router.push({path: `/main/${spotify["access_token"]}`})
     }
   }
 </script>
