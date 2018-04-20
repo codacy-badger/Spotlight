@@ -9,7 +9,7 @@
       <div id="choose-playlist">
         <h3 id="playlist">Wähle die gewünschte Playlist aus:</h3>
         <ul>
-          <li v-for="playlist in playlists" v-bind:id="playlist.id" v-on:click="onPlaylistSelected(playlist.id)">
+          <li v-for="playlist in playlists" v-bind:id="playlist.id" v-on:click="onPlaylistSelected(playlist)">
             {{ playlist.name }}
           </li>
         </ul>
@@ -37,13 +37,17 @@
           id: ""
         },
         playlists: [],
-        selectedPlaylistId: undefinded
+        selectedPlaylistId: undefined
       }
     },
     methods: {
-      onPlaylistSelected(elementId) {
-        this.selectedPlaylistId = elementId;
-        document.getElementById(elementId).style.backgroundColor = "green";
+      onPlaylistSelected(selectedPlaylist) {
+        this.selectedPlaylistId = selectedPlaylist.id;
+
+        this.playlists.forEach(function(playlist) {
+          document.getElementById(playlist.id).className = '';
+        });
+        document.getElementById(selectedPlaylist.id).className = 'selectedPlaylist';
       }
     },
     created: function () {
@@ -110,15 +114,16 @@
     color: black;
     padding-bottom: 2vw;
     padding-top: 1.6vw;
-    margin-left: 1.6vw;
-    margin-right: 2vw;
+    padding-left: 1.6vw;
+    margin-right: 1.2vw;
     font-family: 'Montserrat', medium, serif;
     font-weight: normal;
-    border-bottom: 2px solid;;
+    border-bottom: 2px solid black;
   }
 
-  li:checked {
-    background-color: blue;
+  .selectedPlaylist {
+    color: white;
+    background-color: #1db954;
   }
 
   ::-webkit-scrollbar {
@@ -131,7 +136,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: #343434;
+    background-color: #dbdbdb;
     border-radius: 10px;
   }
 
