@@ -17,6 +17,7 @@
 
       <div id="adjust-curve">
         <h3>Passe die Spotlight-Kurve an:</h3>
+        <div id="draggable-container"></div>
       </div>
 
       <div id="save-playlist">
@@ -27,7 +28,8 @@
 </template>
 
 <script>
-  import axios from 'axios'
+  import axios from 'axios';
+  import buildDraggableGraph from './../js/draggable-container';
 
   export default {
     name: 'main',
@@ -67,6 +69,10 @@
         .then(function (response) {
           this.$data.user = response.data
         }.bind(this));
+    },
+    mounted: function () {
+      let draggableContainer = document.getElementById('draggable-container');
+      buildDraggableGraph(draggableContainer.offsetWidth, draggableContainer.offsetHeight);
     }
   }
 </script>
@@ -169,9 +175,9 @@
   }
 
   #draggable-container {
-    width: 400px;
-    height: 200px;
-    background: #4d4d4d;
+    width: 20vw;
+    height: 15vw;
+    background: #FFFFFF;
     display: block;
   }
 </style>
