@@ -9,7 +9,7 @@
       <div id="choose-playlist">
         <h3 id="playlist">Wähle die gewünschte Playlist aus:</h3>
         <ul>
-          <li v-for="playlist in playlists" v-bind:id="playlist.id" v-on:click="onPlaylistSelected(playlist, playlist.id)">
+          <li v-for="playlist in playlists" v-bind:id="playlist.id" v-on:click="onPlaylistSelected(playlist.id)">
             {{ playlist.name }}
           </li>
         </ul>
@@ -37,13 +37,12 @@
           id: ""
         },
         playlists: [],
-        selectedPlaylistName: null
+        selectedPlaylistId: undefinded
       }
     },
     methods: {
-      onPlaylistSelected(selectedPlaylistName, elementId) {
-        this.selectedPlaylistName = selectedPlaylistName;
-        console.log(selectedPlaylistName);
+      onPlaylistSelected(elementId) {
+        this.selectedPlaylistId = elementId;
         document.getElementById(elementId).style.backgroundColor = "green";
       }
     },
