@@ -9,7 +9,11 @@ fun main(args: Array<String>) {
     val server = embeddedServer(Netty, port = 8080) {
         routing {
             get("/") {
-                call.respondText("Hello World!", ContentType.Text.Plain)
+                call.parameters.get("token")?.let {
+                    call.respondText("Hello World!", ContentType.Text.  Plain)
+                }
+
+                call.respond(HttpStatusCode.Forbidden)
             }
         }
     }
