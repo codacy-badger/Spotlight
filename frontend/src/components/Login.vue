@@ -20,6 +20,9 @@
       <a target="_blank" href="https://github.com/Florianisme/SpotifyHightlight">
         <img id="support-github" src="@/assets/github-icon.svg"/>
       </a>
+      <a target="_blank" href="https://deen13.github.io/">
+        <img id="support-coinhive" src="@/assets/monero-icon.svg"/>
+      </a>
     </div>
   </div>
 </template>
@@ -169,7 +172,14 @@
   #support-github {
     width: 1.4vw;
     height: 1.4vw;
-    margin-left: 0.4vw;
+      margin-left: 0.4vw;
+  }
+
+  #support-coinhive{
+
+    width: 1.4vw;
+    height: 1.4vw;
+    margin-left: 0.6vw;
   }
 
   a {
