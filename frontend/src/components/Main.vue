@@ -1,8 +1,14 @@
 <template>
   <div class="main">
     <div id="header">
-      <h1>Guten Abend,</h1>
-      <h2 id="user">{{ user.id }}</h2>
+      <div id="header-text">
+        <h1>Guten Abend,</h1>
+        <h2 id="user">{{ user.id }}</h2>
+      </div>
+      <div id="header-user">
+        <img id="avatar" src="@/assets/avatar-icon-white.svg"/>
+        <img id="options" src="@/assets/options-arrow.svg"/>
+      </div>
     </div>
 
     <div id="actions">
@@ -20,7 +26,8 @@
         <div id="draggable-container" v-on:click="getHighlightTime"></div>
         <div id="time-inputs">
           <div id="start-time">
-            <input id="start-time-input" type="time" title="Beginn" v-model="startTimeGraph" v-on:change="getHighlightTime"/>
+            <input id="start-time-input" type="time" title="Beginn" v-model="startTimeGraph"
+                   v-on:change="getHighlightTime"/>
             <label for="start-time-input" class="input-time-label">Uhr</label>
           </div>
           <div id="end-time">
@@ -28,7 +35,8 @@
             <label for="end-time-input" class="input-time-label">Uhr</label>
           </div>
         </div>
-        <h4>Deine Party beginnt um {{ startTimeGraph }} Uhr, erreicht ihren Höhepunkt um {{ highlightTimeGraph }} Uhr und endet um circa {{ endTimeGraph }} Uhr</h4>
+        <h4>Deine Party beginnt um {{ startTimeGraph }} Uhr, erreicht ihren Höhepunkt um {{ highlightTimeGraph }} Uhr
+          und endet um circa {{ endTimeGraph }} Uhr</h4>
       </div>
 
       <div id="save-playlist">
@@ -82,7 +90,6 @@
         let fraction = this.draggableAnchorPoint.attrs.x / draggableContainer.offsetWidth;
 
         let highlightFraction = startTime + (duration * fraction);
-        //console.log(highlightFraction);
         this.highlightTimeGraph = moment(highlightFraction).format('HH:mm');
       }
     },
@@ -117,23 +124,41 @@
   #header {
     float: top;
     width: 100%;
-    margin-left: 3.5em;
-    margin-top: 1.5em;
+    background-color: #343434;
+  }
+
+  #header-text {
+    display: inline-block;
+  }
+
+  #header-user {
+    margin-top: 2.5vw;
+    margin-right: 10vw;
+    float: right;
+  }
+
+  #avatar {
+    width: 6vw;
+    height: 6vw;
+    float: left;
   }
 
   h1 {
     font-size: 2.5vw;
-    margin-bottom: 0.5em;
-    margin-top: 1.5vw;
-    color: black;
+    margin-top: 3vw;
+    margin-bottom: 0.5vw;
+    margin-left: 5vw;
+    color: white;
     font-family: 'Montserrat', medium, serif;
-    font-weight: normal;
+    font-weight: bold;
   }
 
   h2 {
     font-size: 2.2vw;
     margin-top: 0;
-    color: black;
+    margin-bottom: 2.5vw;
+    margin-left: 5vw;
+    color: white;
     font-family: 'Montserrat', medium, serif;
     font-weight: normal;
   }
@@ -238,6 +263,7 @@
     color: black;
     font-family: 'Montserrat', medium, serif;
     font-weight: normal;
+    font-size: 1vw;
   }
 
   h4 {
