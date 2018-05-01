@@ -28,7 +28,7 @@
             <label for="end-time-input" class="input-time-label">Uhr</label>
           </div>
         </div>
-        <h4>Deine Party startet um {{ startTimeGraph }} Uhr, erreicht ihren Höhepunkt um {{ highlightTimeGraph }} Uhr und endet um circa {{ endTimeGraph }} Uhr</h4>
+        <h4>Deine Party beginnt um {{ startTimeGraph }} Uhr, erreicht ihren Höhepunkt um {{ highlightTimeGraph }} Uhr und endet um circa {{ endTimeGraph }} Uhr</h4>
       </div>
 
       <div id="save-playlist">
@@ -245,7 +245,7 @@
     color: gray;
     font-family: 'Montserrat', medium, serif;
     font-weight: normal;
-    margin-top: 4vw;
+    margin-top: 2vw;
     margin-right: 30%;
   }
 </style>
