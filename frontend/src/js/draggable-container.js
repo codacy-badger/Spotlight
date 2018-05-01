@@ -9,16 +9,16 @@ export default function buildDraggableGraph(width, height) {
   });
 
   var draggablePadding = width / 6;
+  let graphPadding = 40;
 
 // globals
-  var curveLayer, anchorLayer, quad;
+  var curveLayer, anchorLayer, quad, rect;
 
-  var curve = new Konva.Line({
-    stroke: '#1db954',
-    strokeWidth: 8,
-    lineCap: 'round',
-    lineJoin: 'round',
-    tension: 0.5
+  rect = new Konva.Rect({
+    width: width,
+    height: height,
+    stroke: "#343434",
+    strokeWidth: 5
   });
 
   function buildAnchor(x, y, radius) {
@@ -40,6 +40,17 @@ export default function buildDraggableGraph(width, height) {
         } else {
           newX = pos.x;
         }
+
+        // update X coordinate of other bezier points
+        quad.bezierPoint1.x(newX);
+        quad.bezierPoint2.x(newX);
+
+        // measure, how far the control is moved to the right so we can calculate the appropriate Y coordinates for the bezier points
+        let fraction = newX / width;
+        quad.bezierPoint1.y((height * fraction) - graphPadding);
+        quad.bezierPoint2.y(height - (height * fraction) - graphPadding);
+
+        drawCurve();
 
         return {
           x: newX,
@@ -69,12 +80,33 @@ export default function buildDraggableGraph(width, height) {
     return anchor;
   }
 
-  function drawCurve() {
-    curve.points([quad.start.attrs.x, quad.start.attrs.y,
-      quad.control.attrs.x, 70,
-      quad.end.attrs.x, quad.end.attrs.y]);
-    curveLayer.draw();
+  function buildPoint(x, y) {
+    let circle = new Konva.Circle({
+      x: x,
+      y: y,
+      radius: 5,
+      fill: '#000000',
+    });
 
+    anchorLayer.add(circle);
+    return circle;
+  }
+
+  function drawCurve() {
+    var context = curveLayer.getContext();
+
+    context.clear();
+
+    curveLayer.add(rect);
+    // draw bezier
+    context.beginPath();
+    context.moveTo(quad.start.attrs.x, quad.start.attrs.y);
+    context.bezierCurveTo(quad.bezierPoint1.attrs.x, quad.bezierPoint1.attrs.y,
+      quad.bezierPoint2.attrs.x, quad.bezierPoint2.attrs.y,
+      quad.end.attrs.x, quad.end.attrs.y,);
+    context.setAttr('strokeStyle', 'blue');
+    context.setAttr('lineWidth', 4);
+    context.stroke();
   }
 
   anchorLayer = new Konva.Layer();
@@ -83,12 +115,16 @@ export default function buildDraggableGraph(width, height) {
 // onto with the existing canvas API
   curveLayer = new Konva.Layer();
 
-  curveLayer.add(curve);
+  curveLayer.add(rect);
+
+  let fraction = draggablePadding / width;
 
   quad = {
-    start: buildAnchor(5, height, 0),
-    control: buildAnchor(draggablePadding, 70, 8),
-    end: buildAnchor(width - 5, height, 0)
+    start: buildPoint(10, height),
+    bezierPoint1: buildPoint(draggablePadding, (height * fraction) - graphPadding),
+    control: buildAnchor(draggablePadding, 115, 14),
+    bezierPoint2: buildPoint(draggablePadding, height - (height * fraction) - graphPadding),
+    end: buildPoint(width - 10, height)
   };
 
 
