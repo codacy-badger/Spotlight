@@ -7,7 +7,7 @@ import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 
 fun main(args: Array<String>) {
-    val server = embeddedServer(Netty, port = 8080) {
+    embeddedServer(Netty, port = 8080) {
         routing {
             get("/") {
                 val token = call.parameters["token"]
@@ -31,6 +31,5 @@ fun main(args: Array<String>) {
                 val playlist = usersPlaylists.items.find { it.name?.trim().equals(playlistName) }
             }
         }
-    }
-    server.start(wait = true)
+    }.start(wait = true)
 }
