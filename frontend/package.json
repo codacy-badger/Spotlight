@@ -15,7 +15,8 @@
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "axios": "^0.18.0",
-    "konva": "^2.0.2"
+    "konva": "^2.0.2",
+    "moment": "^2.22.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

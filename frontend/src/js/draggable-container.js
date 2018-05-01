@@ -8,7 +8,7 @@ export default function buildDraggableGraph(width, height) {
     height: height
   });
 
-  var draggablePadding = width / 6;
+  let draggablePadding = width / 6;
   let graphPadding = 40;
 
 // globals
@@ -137,4 +137,6 @@ export default function buildDraggableGraph(width, height) {
   stage.add(curveLayer);
   stage.add(anchorLayer);
   drawCurve();
+
+  return quad.control;
 }

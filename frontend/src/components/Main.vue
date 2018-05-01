@@ -20,15 +20,15 @@
         <div id="draggable-container"></div>
         <div id="time-inputs">
           <div id="start-time">
-            <input id="start-time-input" type="time" title="Beginn" v-model="startTimeGraph"/>
+            <input id="start-time-input" type="time" title="Beginn" v-model="startTimeGraph" v-on:change="getHighlightTime"/>
             <label for="start-time-input" class="input-time-label">Uhr</label>
           </div>
           <div id="end-time">
-            <input id="end-time-input" type="time" title="Ende" v-model="endTimeGraph"/>
+            <input id="end-time-input" type="time" title="Ende" v-model="endTimeGraph" v-on:change="getHighlightTime"/>
             <label for="end-time-input" class="input-time-label">Uhr</label>
           </div>
         </div>
-        <h4>Deine Party startet um {{ startTimeGraph }} Uhr, erreicht ihren Höhepunkt um X und endet um circa {{ endTimeGraph }} Uhr</h4>
+        <h4>Deine Party startet um {{ startTimeGraph }} Uhr, erreicht ihren Höhepunkt um {{ highlightTimeGraph }} Uhr und endet um circa {{ endTimeGraph }} Uhr</h4>
       </div>
 
       <div id="save-playlist">
@@ -41,6 +41,7 @@
 <script>
   import axios from 'axios';
   import buildDraggableGraph from './../js/draggable-container';
+  import moment from 'moment';
 
   export default {
     name: 'main',
@@ -51,18 +52,38 @@
         },
         playlists: [],
         selectedPlaylistId: undefined,
-        startTimeGraph: "20:00",
-        endTimeGraph: "05:00"
+        startTimeGraph: "22:00",
+        endTimeGraph: "06:00",
+        highlightTimeGraph: "03:00",
+        draggableAnchorPoint: undefined
       }
     },
     methods: {
       onPlaylistSelected(selectedPlaylist) {
         this.selectedPlaylistId = selectedPlaylist.id;
 
-        this.playlists.forEach(function (playlist) {
+        this.playlists.forEach(playlist => {
           document.getElementById(playlist.id).className = '';
         });
+
         document.getElementById(selectedPlaylist.id).className = 'selectedPlaylist';
+      },
+      getHighlightTime() {
+        if (this.draggableAnchorPoint === undefined)
+          return;
+
+        let startTime = moment(this.startTimeGraph, 'HH:mm');
+        let endTime = moment(this.endTimeGraph, 'HH:mm');
+
+        let duration = startTime.to(endTime).valueOf();
+
+        // calculate fraction and construct new Time
+        let draggableContainer = document.getElementById('draggable-container');
+        let fraction = this.draggableAnchorPoint.attrs.x / draggableContainer.offsetWidth;
+
+        let highlightFraction = startTime + (duration * fraction);
+        console.log(highlightFraction);
+        this.highlightTimeGraph = moment(highlightFraction).format('HH:mm');
       }
     },
     created: function () {
@@ -85,7 +106,7 @@
     },
     mounted: function () {
       let draggableContainer = document.getElementById('draggable-container');
-      buildDraggableGraph(draggableContainer.offsetWidth, draggableContainer.offsetHeight);
+      this.draggableAnchorPoint = buildDraggableGraph(draggableContainer.offsetWidth, draggableContainer.offsetHeight);
     }
   }
 </script>
@@ -204,7 +225,7 @@
   }
 
   #end-time {
-    margin-left: 25%;
+    margin-left: 27%;
   }
 
   .input-time-label {
@@ -220,7 +241,7 @@
   }
 
   h4 {
-    font-size: 1vw;
+    font-size: 1.1vw;
     color: gray;
     font-family: 'Montserrat', medium, serif;
     font-weight: normal;
