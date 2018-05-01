@@ -17,7 +17,7 @@
 
       <div id="adjust-curve">
         <h3>Passe die Spotlight-Kurve an:</h3>
-        <div id="draggable-container"></div>
+        <div id="draggable-container" v-on:click="getHighlightTime"></div>
         <div id="time-inputs">
           <div id="start-time">
             <input id="start-time-input" type="time" title="Beginn" v-model="startTimeGraph" v-on:change="getHighlightTime"/>
@@ -72,17 +72,17 @@
         if (this.draggableAnchorPoint === undefined)
           return;
 
-        let startTime = moment(this.startTimeGraph, 'HH:mm');
-        let endTime = moment(this.endTimeGraph, 'HH:mm');
+        let startTime = moment(this.startTimeGraph, 'HH:mm').valueOf();
+        let endTime = moment(this.endTimeGraph, 'HH:mm').add(1, 'd').valueOf();
 
-        let duration = startTime.to(endTime).valueOf();
+        let duration = endTime - startTime;
 
         // calculate fraction and construct new Time
         let draggableContainer = document.getElementById('draggable-container');
         let fraction = this.draggableAnchorPoint.attrs.x / draggableContainer.offsetWidth;
 
         let highlightFraction = startTime + (duration * fraction);
-        console.log(highlightFraction);
+        //console.log(highlightFraction);
         this.highlightTimeGraph = moment(highlightFraction).format('HH:mm');
       }
     },

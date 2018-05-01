@@ -108,6 +108,8 @@ export default function buildDraggableGraph(width, height) {
     context.closePath();
     context.stroke();
     context.fill();
+
+    stage.container().click();
   }
 
   anchorLayer = new Konva.Layer();
