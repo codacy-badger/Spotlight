@@ -1,3 +1,4 @@
+import com.wrapper.spotify.SpotifyApi
 import io.ktor.application.*
 import io.ktor.http.*
 import io.ktor.response.*
@@ -9,11 +10,25 @@ fun main(args: Array<String>) {
     val server = embeddedServer(Netty, port = 8080) {
         routing {
             get("/") {
-                call.parameters.get("token")?.let {
-                    call.respondText("Hello World!", ContentType.Text.  Plain)
+                val token = call.parameters["token"]
+                val playlistName = call.parameters["playlist"]?.trim()
+
+                if (token.isNullOrEmpty()) {
+                    call.respond(HttpStatusCode.Forbidden)
+                    return@get
+                }
+                if (playlistName.isNullOrEmpty()) {
+                    call.respond(HttpStatusCode.BadRequest)
+                    return@get
                 }
 
-                call.respond(HttpStatusCode.Forbidden)
+                val spotifyApi = SpotifyApi.Builder()
+                        .setAccessToken(token)
+                        .build()
+                val usersPlaylists = spotifyApi.listOfCurrentUsersPlaylists
+                        .build()
+                        .execute()
+                val playlist = usersPlaylists.items.find { it.name?.trim().equals(playlistName) }
             }
         }
     }
