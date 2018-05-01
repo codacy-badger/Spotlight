@@ -96,17 +96,18 @@ export default function buildDraggableGraph(width, height) {
     var context = curveLayer.getContext();
 
     context.clear();
-
-    curveLayer.add(rect);
     // draw bezier
     context.beginPath();
     context.moveTo(quad.start.attrs.x, quad.start.attrs.y);
     context.bezierCurveTo(quad.bezierPoint1.attrs.x, quad.bezierPoint1.attrs.y,
       quad.bezierPoint2.attrs.x, quad.bezierPoint2.attrs.y,
       quad.end.attrs.x, quad.end.attrs.y,);
-    context.setAttr('strokeStyle', 'blue');
+    context.setAttr('strokeStyle', '#343434');
     context.setAttr('lineWidth', 4);
+    context.setAttr('fillStyle', '#343434');
+    context.closePath();
     context.stroke();
+    context.fill();
   }
 
   anchorLayer = new Konva.Layer();
@@ -115,16 +116,16 @@ export default function buildDraggableGraph(width, height) {
 // onto with the existing canvas API
   curveLayer = new Konva.Layer();
 
-  curveLayer.add(rect);
+  anchorLayer.add(rect);
 
   let fraction = draggablePadding / width;
 
   quad = {
-    start: buildPoint(10, height),
+    start: buildPoint(0, height),
     bezierPoint1: buildPoint(draggablePadding, (height * fraction) - graphPadding),
     control: buildAnchor(draggablePadding, 115, 14),
     bezierPoint2: buildPoint(draggablePadding, height - (height * fraction) - graphPadding),
-    end: buildPoint(width - 10, height)
+    end: buildPoint(width, height)
   };
 
 

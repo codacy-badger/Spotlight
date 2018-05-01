@@ -175,7 +175,7 @@
   }
 
   #draggable-container {
-    width: 20vw;
+    width: 25vw;
     height: 15vw;
     background: #FFFFFF;
     display: block;
