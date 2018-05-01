@@ -18,6 +18,17 @@
       <div id="adjust-curve">
         <h3>Passe die Spotlight-Kurve an:</h3>
         <div id="draggable-container"></div>
+        <div id="time-inputs">
+          <div id="start-time">
+            <input id="start-time-input" type="time" title="Beginn" v-model="startTimeGraph"/>
+            <label for="start-time-input" class="input-time-label">Uhr</label>
+          </div>
+          <div id="end-time">
+            <input id="end-time-input" type="time" title="Ende" v-model="endTimeGraph"/>
+            <label for="end-time-input" class="input-time-label">Uhr</label>
+          </div>
+        </div>
+        <h4>Deine Party startet um {{ startTimeGraph }} Uhr, erreicht ihren Höhepunkt um X und endet um circa {{ endTimeGraph }} Uhr</h4>
       </div>
 
       <div id="save-playlist">
@@ -39,14 +50,16 @@
           id: ""
         },
         playlists: [],
-        selectedPlaylistId: undefined
+        selectedPlaylistId: undefined,
+        startTimeGraph: "20:00",
+        endTimeGraph: "05:00"
       }
     },
     methods: {
       onPlaylistSelected(selectedPlaylist) {
         this.selectedPlaylistId = selectedPlaylist.id;
 
-        this.playlists.forEach(function(playlist) {
+        this.playlists.forEach(function (playlist) {
           document.getElementById(playlist.id).className = '';
         });
         document.getElementById(selectedPlaylist.id).className = 'selectedPlaylist';
@@ -127,6 +140,7 @@
     border-bottom: 2px solid black;
   }
 
+  /* Do NOT delete, used in code */
   .selectedPlaylist {
     color: white;
     background-color: #1db954;
@@ -175,9 +189,42 @@
   }
 
   #draggable-container {
-    width: 25vw;
+    width: 70%;
     height: 15vw;
     background: #FFFFFF;
     display: block;
+  }
+
+  #time-inputs {
+    margin-top: 0.5vw;
+  }
+
+  #start-time, #end-time {
+    display: inline-block;
+  }
+
+  #end-time {
+    margin-left: 25%;
+  }
+
+  .input-time-label {
+    color: black;
+    font-family: 'Montserrat', medium, serif;
+    font-weight: normal;
+  }
+
+  input[type="time"] {
+    color: black;
+    font-family: 'Montserrat', medium, serif;
+    font-weight: normal;
+  }
+
+  h4 {
+    font-size: 1vw;
+    color: gray;
+    font-family: 'Montserrat', medium, serif;
+    font-weight: normal;
+    margin-top: 4vw;
+    margin-right: 30%;
   }
 </style>
