@@ -7,7 +7,7 @@
       </div>
       <div id="header-user">
         <img id="avatar" src="@/assets/avatar-icon-white.svg"/>
-        <img v-on:click="optionsClicked" id="options" src="@/assets/options-arrow.svg"/>
+        <i v-on:click="logoutClicked" id="logout" class="fa fa-power-off" style="font-size:48px;color:white"></i>
       </div>
     </div>
 
@@ -50,6 +50,7 @@
   import axios from 'axios';
   import buildDraggableGraph from './../js/draggable-container';
   import moment from 'moment';
+  import router from "@/router";
 
   export default {
     name: 'main',
@@ -92,7 +93,9 @@
         let highlightFraction = startTime + (duration * fraction);
         this.highlightTimeGraph = moment(highlightFraction).format('HH:mm');
       },
-      optionsClicked() {
+      logoutClicked() {
+        router.push('/')
+        //TODO: delete cookie or invalidate token
       }
     },
     created: function () {
@@ -147,6 +150,11 @@
     height: 6vw;
     float: left;
     border-radius: 50%;
+  }
+
+  #logout {
+    margin-top: 2vw;
+    margin-left: 1vw;
   }
 
   h1 {
