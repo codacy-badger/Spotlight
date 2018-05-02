@@ -7,7 +7,7 @@
       </div>
       <div id="header-user">
         <img id="avatar" src="@/assets/avatar-icon-white.svg"/>
-        <img id="options" src="@/assets/options-arrow.svg"/>
+        <img v-on:click="optionsClicked" id="options" src="@/assets/options-arrow.svg"/>
       </div>
     </div>
 
@@ -91,6 +91,8 @@
 
         let highlightFraction = startTime + (duration * fraction);
         this.highlightTimeGraph = moment(highlightFraction).format('HH:mm');
+      },
+      optionsClicked() {
       }
     },
     created: function () {
