@@ -2,12 +2,9 @@
   <div class="main">
     <div id="header">
       <div id="header-text">
-        <h1>Guten Abend,</h1>
-        <h2 id="user">{{ user.id }}</h2>
-      </div>
-      <div id="header-user">
         <img id="avatar" src="@/assets/avatar-icon-white.svg"/>
-        <i v-on:click="logoutClicked" id="logout" class="fa fa-power-off"></i>
+        <h1>Guten Abend,</h1>
+        <h2>{{ user.id }}</h2>
       </div>
     </div>
 
@@ -132,28 +129,21 @@
   #header {
     float: top;
     width: 100%;
+    padding-top: 1.5vw;
+    padding-bottom: 1vw;
     background-color: #343434;
-  }
-
-  #header-text {
-    display: inline-block;
-  }
-
-  #header-user {
-    margin-top: 2.5vw;
-    margin-right: 10vw;
-    float: right;
   }
 
   #avatar {
     width: 6vw;
     height: 6vw;
     float: left;
+    margin-left: 2vw;
+    margin-right: 1.5vw;
     border-radius: 50%;
   }
 
   #logout {
-    margin-top: 2vw;
     margin-left: 1vw;
     font-size: 32px;
     color: white;
@@ -162,9 +152,8 @@
 
   h1 {
     font-size: 2.5vw;
-    margin-top: 3vw;
-    margin-bottom: 0.5vw;
     margin-left: 5vw;
+    margin-bottom: 0;
     color: white;
     font-family: 'Montserrat', medium, serif;
     font-weight: bold;
@@ -173,7 +162,6 @@
   h2 {
     font-size: 2.2vw;
     margin-top: 0;
-    margin-bottom: 2.5vw;
     margin-left: 5vw;
     color: white;
     font-family: 'Montserrat', medium, serif;
