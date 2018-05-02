@@ -2,7 +2,7 @@
   <div class="main">
     <div id="header">
       <div id="header-options">
-        <i id="logout" class="fas fa-sign-out-alt" title="Abmelden"></i>
+        <i id="logout" class="fas fa-sign-out-alt" title="Abmelden" v-on:click="onLogoutClicked"></i>
         <i id="language" class="fas fa-globe" title="Sprache"></i>
       </div>
       <div>
@@ -96,7 +96,7 @@
         let highlightFraction = startTime + (duration * fraction);
         this.inputTimes.highlightTimeGraph = moment(highlightFraction).format('HH:mm');
       },
-      logoutClicked() {
+      onLogoutClicked() {
         router.push('/');
         window.open("https://www.spotify.com/logout/");
       }
