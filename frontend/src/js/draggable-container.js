@@ -2,7 +2,7 @@ import Konva from 'konva';
 
 export default function buildDraggableGraph(width, height) {
 
-  var stage = new Konva.Stage({
+  let stage = new Konva.Stage({
     container: '#draggable-container',
     width: width,
     height: height
@@ -12,7 +12,7 @@ export default function buildDraggableGraph(width, height) {
   let graphPadding = 40;
 
 // globals
-  var curveLayer, anchorLayer, quad, rect;
+  let curveLayer, anchorLayer, quad, rect;
 
   rect = new Konva.Rect({
     width: width,
@@ -22,7 +22,7 @@ export default function buildDraggableGraph(width, height) {
   });
 
   function buildAnchor(x, y, radius) {
-    var anchor = new Konva.Circle({
+    let anchor = new Konva.Circle({
       x: x,
       y: y,
       radius: radius,
@@ -30,8 +30,8 @@ export default function buildDraggableGraph(width, height) {
       fill: '#1db954',
       strokeWidth: 4,
       draggable: true,
-      dragBoundFunc: function(pos) {
-        var newX;
+      dragBoundFunc: function (pos) {
+        let newX;
 
         if (pos.x <= draggablePadding) {
           newX = draggablePadding;
@@ -60,19 +60,19 @@ export default function buildDraggableGraph(width, height) {
     });
 
     // add hover styling
-    anchor.on('mouseover', function() {
+    anchor.on('mouseover', function () {
       document.body.style.cursor = 'pointer';
       this.setStrokeWidth(6);
       anchorLayer.draw();
     });
-    anchor.on('mouseout', function() {
+    anchor.on('mouseout', function () {
       document.body.style.cursor = 'default';
       this.setStrokeWidth(4);
       anchorLayer.draw();
 
     });
 
-    anchor.on('dragend', function() {
+    anchor.on('dragend', function () {
       drawCurve();
     });
 
@@ -93,7 +93,7 @@ export default function buildDraggableGraph(width, height) {
   }
 
   function drawCurve() {
-    var context = curveLayer.getContext();
+    let context = curveLayer.getContext();
 
     context.clear();
     // draw bezier
@@ -132,7 +132,7 @@ export default function buildDraggableGraph(width, height) {
 
 
 // keep curves insync with the lines
-  anchorLayer.on('beforeDraw', function() {
+  anchorLayer.on('beforeDraw', function () {
     drawCurve();
   });
 
