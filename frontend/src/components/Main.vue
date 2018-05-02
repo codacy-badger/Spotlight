@@ -7,7 +7,7 @@
       </div>
       <div id="header-user">
         <img id="avatar" src="@/assets/avatar-icon-white.svg"/>
-        <i v-on:click="logoutClicked" id="logout" class="fa fa-power-off" style="font-size:48px;color:white"></i>
+        <i v-on:click="logoutClicked" id="logout" class="fa fa-power-off"></i>
       </div>
     </div>
 
@@ -155,6 +155,9 @@
   #logout {
     margin-top: 2vw;
     margin-left: 1vw;
+    font-size: 32px;
+    color: white;
+    cursor: pointer;
   }
 
   h1 {
