@@ -102,19 +102,19 @@
       }
     },
     created: function () {
-      const instance = axios.create({
+      const spotifyApi = axios.create({
         baseURL: 'https://api.spotify.com/v1/me',
         timeout: 1000,
         headers: {
           'Authorization': `Bearer ${this.$route.params.accessToken}`
         }
       });
-      instance.get("/playlists")
+      spotifyApi.get("/playlists")
         .then(function (response) {
           this.$data.playlists = response.data.items;
         }.bind(this));
 
-      instance.get("")
+      spotifyApi.get("")
         .then(function (response) {
           this.$data.user = response.data;
           if (response.data.images.length > 0) {
