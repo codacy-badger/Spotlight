@@ -3,8 +3,14 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import vueAnalytics from 'vue-analytics';
 
-Vue.config.productionTip = false
+Vue.use(vueAnalytics, {
+  id: 'UA-45417075-22',
+  router
+});
+
+Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 new Vue({
