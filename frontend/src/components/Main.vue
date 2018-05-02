@@ -50,6 +50,7 @@
   import axios from 'axios';
   import buildDraggableGraph from './../js/draggable-container';
   import moment from 'moment';
+  import router from "@/router";
 
   export default {
     name: 'main',
@@ -93,7 +94,8 @@
         this.highlightTimeGraph = moment(highlightFraction).format('HH:mm');
       },
       logoutClicked() {
-        document.location = "https://www.spotify.com/logout/";
+        router.push('/')
+        window.open("https://www.spotify.com/logout/");
       }
     },
     created: function () {
