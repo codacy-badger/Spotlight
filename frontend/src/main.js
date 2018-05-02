@@ -7,7 +7,10 @@ import vueAnalytics from 'vue-analytics';
 
 Vue.use(vueAnalytics, {
   id: 'UA-45417075-22',
-  router
+  router,
+  autoTracking: {
+    exception: true
+  }
 });
 
 Vue.config.productionTip = false;
