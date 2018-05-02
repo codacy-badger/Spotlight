@@ -1,7 +1,11 @@
 <template>
   <div class="main">
     <div id="header">
-      <div id="header-text">
+      <div id="header-options">
+        <i id="logout" class="fas fa-sign-out-alt" title="Abmelden"></i>
+        <i id="language" class="fas fa-globe" title="Sprache"></i>
+      </div>
+      <div>
         <img id="avatar" src="@/assets/avatar-icon-white.svg"/>
         <h1>Guten Abend,</h1>
         <h2>{{ user.id }}</h2>
@@ -23,17 +27,17 @@
         <div id="draggable-container" v-on:click="getHighlightTime"></div>
         <div id="time-inputs">
           <div id="start-time">
-            <input id="start-time-input" type="time" title="Beginn" v-model="startTimeGraph"
+            <input id="start-time-input" type="time" title="Beginn" v-model="inputTimes.startTimeGraph"
                    v-on:change="getHighlightTime"/>
             <label for="start-time-input" class="input-time-label">Uhr</label>
           </div>
           <div id="end-time">
-            <input id="end-time-input" type="time" title="Ende" v-model="endTimeGraph" v-on:change="getHighlightTime"/>
+            <input id="end-time-input" type="time" title="Ende" v-model="inputTimes.endTimeGraph" v-on:change="getHighlightTime"/>
             <label for="end-time-input" class="input-time-label">Uhr</label>
           </div>
         </div>
-        <h4>Deine Party beginnt um {{ startTimeGraph }} Uhr, erreicht ihren Höhepunkt um {{ highlightTimeGraph }} Uhr
-          und endet um circa {{ endTimeGraph }} Uhr</h4>
+        <h4>Deine Party beginnt um {{ inputTimes.startTimeGraph }} Uhr, erreicht ihren Höhepunkt um {{ inputTimes.highlightTimeGraph }} Uhr
+          und endet um circa {{ inputTimes.endTimeGraph }} Uhr</h4>
       </div>
 
       <div id="save-playlist">
@@ -58,9 +62,11 @@
         },
         playlists: [],
         selectedPlaylistId: undefined,
-        startTimeGraph: "22:00",
-        endTimeGraph: "06:00",
-        highlightTimeGraph: "03:00",
+        inputTimes : {
+          startTimeGraph: "22:00",
+          endTimeGraph: "06:00",
+          highlightTimeGraph: "03:00"
+        },
         draggableAnchorPoint: undefined
       }
     },
@@ -78,8 +84,8 @@
         if (this.draggableAnchorPoint === undefined)
           return;
 
-        let startTime = moment(this.startTimeGraph, 'HH:mm').valueOf();
-        let endTime = moment(this.endTimeGraph, 'HH:mm').add(1, 'd').valueOf();
+        let startTime = moment(this.inputTimes.startTimeGraph, 'HH:mm').valueOf();
+        let endTime = moment(this.inputTimes.endTimeGraph, 'HH:mm').add(1, 'd').valueOf();
 
         let duration = endTime - startTime;
 
@@ -88,10 +94,10 @@
         let fraction = this.draggableAnchorPoint.attrs.x / draggableContainer.offsetWidth;
 
         let highlightFraction = startTime + (duration * fraction);
-        this.highlightTimeGraph = moment(highlightFraction).format('HH:mm');
+        this.inputTimes.highlightTimeGraph = moment(highlightFraction).format('HH:mm');
       },
       logoutClicked() {
-        router.push('/')
+        router.push('/');
         window.open("https://www.spotify.com/logout/");
       }
     },
@@ -129,9 +135,16 @@
   #header {
     float: top;
     width: 100%;
-    padding-top: 1.5vw;
-    padding-bottom: 1vw;
+    padding-bottom: 0.5vw;
     background-color: #343434;
+    box-shadow: 0 2px 5px #888888;
+  }
+
+  #header-options {
+    background-color: #292929;
+    float: top;
+    width: 100%;
+    height: 5vh;
   }
 
   #avatar {
@@ -143,11 +156,13 @@
     border-radius: 50%;
   }
 
-  #logout {
-    margin-left: 1vw;
-    font-size: 32px;
+  #logout, #language {
+    float: right;
+    font-size: 3vh;
     color: white;
     cursor: pointer;
+    margin-right: 1.5vw;
+    line-height: 4.5vh;
   }
 
   h1 {
@@ -213,7 +228,7 @@
 
   #actions {
     width: 100%;
-    margin-top: 5em;
+    margin-top: 3em;
     margin-left: 3.5em;
   }
 
