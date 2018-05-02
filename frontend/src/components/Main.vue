@@ -108,7 +108,10 @@
 
       instance.get("")
         .then(function (response) {
-          this.$data.user = response.data
+          this.$data.user = response.data;
+          if (response.data.images.length > 0) {
+            document.getElementById("avatar").setAttribute("src", response.data.images[0].url);
+          }
         }.bind(this));
     },
     mounted: function () {
@@ -141,6 +144,7 @@
     width: 6vw;
     height: 6vw;
     float: left;
+    border-radius: 50%;
   }
 
   h1 {
