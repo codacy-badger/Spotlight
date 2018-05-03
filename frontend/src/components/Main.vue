@@ -98,7 +98,7 @@
       },
       onLogoutClicked() {
         router.push('/');
-        window.open("https://www.spotify.com/logout/");
+        window.open("https://www.spotify.com/logout/", "_blank");
       }
     },
     created: function () {
